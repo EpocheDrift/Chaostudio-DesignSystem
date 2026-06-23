@@ -1,0 +1,94 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   CHAOSTUDIO · DESIGN TOKENS
+   Single source of truth for the studio's visual language.
+   Canonical file. Consume by linking/importing this stylesheet:
+       @import "chaostudio-system/tokens.css";
+   then reference everything as var(--cs-*). Never hardcode raw values.
+
+   Values are not invented — they are extracted from the de-facto language
+   already present in the Zayn Archive Interface, then normalized into scales.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: dark;
+
+  /* ── COLOR ──────────────────────────────────────────────────────────────
+     Near-monochrome "archive terminal". Ground + ink carry almost everything;
+     amber is the ONLY warm accent (state / action), cyan the cool signal. */
+  --cs-ground:        #050605;            /* page base */
+  --cs-ground-soft:   #0b0d0b;            /* raised surfaces, cards */
+  --cs-ink:           #eee9dc;            /* primary text (cream) */
+  --cs-ink-muted:     rgba(238, 233, 220, 0.48);  /* secondary text */
+  --cs-ink-faint:     rgba(238, 233, 220, 0.18);  /* disabled / hint */
+  --cs-line:          rgba(238, 233, 220, 0.2);   /* hairline rules */
+  --cs-line-strong:   rgba(238, 233, 220, 0.48);  /* emphasized rules */
+  --cs-accent:        #d8aa52;            /* amber — actions, live state. Use sparingly. */
+  --cs-signal:        #78a9a8;            /* cyan — signals, secondary highlight */
+
+  /* ── TYPE FAMILIES ──────────────────────────────────────────────────────
+     Condensed is the workhorse (the technical/catalog voice). */
+  --cs-font-display:   "Archivo", "Arial Narrow", Arial, sans-serif;
+  --cs-font-condensed: "IBM Plex Sans Condensed", "Arial Narrow", Arial, sans-serif;
+  --cs-font-body:      Inter, ui-sans-serif, system-ui, sans-serif;
+  --cs-font-cjk:       "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── TYPE SCALE · UI text ───────────────────────────────────────────────
+     Lives in the 9–18px band — small, instrumented, label-like. */
+  --cs-text-micro: 9px;    /* legal / index codes */
+  --cs-text-2xs:   10px;
+  --cs-text-xs:    11px;   /* default label size */
+  --cs-text-sm:    12px;
+  --cs-text-md:    14px;
+  --cs-text-lg:    15px;   /* lead paragraph */
+  --cs-text-xl:    17px;
+  --cs-text-2xl:   18px;
+
+  /* ── TYPE SCALE · Display (fluid) ───────────────────────────────────────
+     Big, set tight (--cs-track-tight). Scales with viewport. */
+  --cs-display-sm: clamp(34px, 4.2vw, 72px);
+  --cs-display-md: clamp(44px, 7vw, 118px);
+  --cs-display-lg: clamp(56px, 8vw, 138px);
+
+  /* ── TRACKING (letter-spacing) · the signature ──────────────────────────
+     Small text is set WIDE; display is set tight. This contrast is the
+     single most recognizable trait of the system. */
+  --cs-track-tight:  0;        /* display headings */
+  --cs-track-snug:   0.08em;
+  --cs-track:        0.14em;   /* default for labels */
+  --cs-track-wide:   0.16em;   /* signature — caps, nav, meta */
+  --cs-track-wider:  0.18em;
+
+  /* ── SPACING ────────────────────────────────────────────────────────────
+     Soft scale. 18 / 14 / 10 are the workhorses. */
+  --cs-space-3xs: 6px;
+  --cs-space-2xs: 8px;
+  --cs-space-xs:  10px;
+  --cs-space-sm:  12px;
+  --cs-space-md:  14px;
+  --cs-space-lg:  18px;
+  --cs-space-xl:  24px;
+  --cs-space-2xl: 28px;
+  --cs-space-3xl: 34px;
+
+  /* ── RADIUS ─────────────────────────────────────────────────────────────
+     Default is 0. Sharp corners are intentional. Only two exceptions exist. */
+  --cs-radius-none: 0;
+  --cs-radius-hair: 2px;     /* subtle softening on small chips */
+  --cs-radius-pill: 999px;   /* the amber action button, only */
+
+  /* ── BORDERS ────────────────────────────────────────────────────────────
+     Everything is delineated by 1px hairlines, never shadows. */
+  --cs-border:        1px solid var(--cs-line);
+  --cs-border-strong: 1px solid var(--cs-line-strong);
+
+  /* ── MOTION ─────────────────────────────────────────────────────────────
+     One easing for everything ("signal" ease-out). Durations step up by
+     content weight: chips fast, panels slow. */
+  --cs-ease: cubic-bezier(0.2, 0.72, 0.18, 1);
+  --cs-dur-1: 160ms;   /* hover, micro */
+  --cs-dur-2: 200ms;
+  --cs-dur-3: 260ms;   /* default transition */
+  --cs-dur-4: 360ms;
+  --cs-dur-5: 420ms;   /* route / panel enter */
+  --cs-dur-6: 520ms;   /* large field shifts */
+}

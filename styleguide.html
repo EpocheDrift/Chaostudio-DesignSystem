@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chaostudio · Visual System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Canonical tokens. Everything below renders FROM this file. -->
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cs-ground);
+    color: var(--cs-ink);
+    font-family: var(--cs-font-condensed);
+    padding: var(--cs-space-3xl);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+
+  /* page furniture, built only from tokens */
+  .eyebrow {
+    font-size: var(--cs-text-xs);
+    letter-spacing: var(--cs-track-wide);
+    text-transform: uppercase;
+    color: var(--cs-ink-muted);
+  }
+  h1 {
+    font-family: var(--cs-font-display);
+    font-size: var(--cs-display-md);
+    letter-spacing: var(--cs-track-tight);
+    margin: var(--cs-space-2xs) 0 var(--cs-space-sm);
+    font-weight: 700;
+  }
+  .lede { font-size: var(--cs-text-lg); color: var(--cs-ink-muted); max-width: 60ch; margin: 0; }
+
+  section { margin-top: var(--cs-space-3xl); padding-top: var(--cs-space-xl); border-top: var(--cs-border); }
+  h2 {
+    font-size: var(--cs-text-sm);
+    letter-spacing: var(--cs-track-wider);
+    text-transform: uppercase;
+    color: var(--cs-accent);
+    margin: 0 0 var(--cs-space-lg);
+    font-weight: 600;
+  }
+  .grid { display: grid; gap: var(--cs-space-sm); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 720px) { .cols-4, .cols-3 { grid-template-columns: repeat(2, 1fr); } }
+
+  /* color swatches */
+  .swatch { border: var(--cs-border); padding: var(--cs-space-sm); }
+  .swatch .chip { height: 56px; border: var(--cs-border); }
+  .swatch .name { display: block; margin-top: var(--cs-space-2xs); font-size: var(--cs-text-xs); letter-spacing: var(--cs-track); }
+  .swatch .var, .swatch .val { display: block; font-size: var(--cs-text-2xs); color: var(--cs-ink-muted); letter-spacing: var(--cs-track-snug); }
+
+  /* spec rows */
+  .row { display: flex; align-items: baseline; gap: var(--cs-space-lg); padding: var(--cs-space-xs) 0; border-bottom: var(--cs-border); }
+  .row .meta { flex: 0 0 200px; font-size: var(--cs-text-2xs); color: var(--cs-ink-muted); letter-spacing: var(--cs-track-snug); }
+
+  /* spacing bars */
+  .space-bar { background: var(--cs-accent); height: 14px; }
+
+  /* motion chips */
+  .mo { display: flex; align-items: center; gap: var(--cs-space-md); padding: var(--cs-space-2xs) 0; }
+  .mo .dot { width: 18px; height: 18px; background: var(--cs-signal); }
+  .mo .track { flex: 1; height: 1px; background: var(--cs-line); position: relative; }
+  .mo .runner { position: absolute; top: -8px; left: 0; width: 16px; height: 16px; background: var(--cs-accent); }
+
+  /* components */
+  .btn {
+    font-family: var(--cs-font-condensed); font-size: var(--cs-text-sm);
+    letter-spacing: var(--cs-track-wide); text-transform: uppercase;
+    color: var(--cs-ground); background: var(--cs-accent);
+    border: none; border-radius: var(--cs-radius-pill);
+    padding: var(--cs-space-xs) var(--cs-space-xl); cursor: pointer;
+  }
+  .card { border: var(--cs-border); background: var(--cs-ground-soft); padding: var(--cs-space-lg); }
+  .signal-row { display: flex; justify-content: space-between; align-items: baseline; border-bottom: var(--cs-border); padding: var(--cs-space-sm) 0; }
+  .signal-row .code { font-size: var(--cs-text-micro); letter-spacing: var(--cs-track-wide); color: var(--cs-signal); }
+  .signal-row .ttl { font-size: var(--cs-text-md); letter-spacing: var(--cs-track-snug); }
+  .signal-row .st { font-size: var(--cs-text-2xs); letter-spacing: var(--cs-track-wide); text-transform: uppercase; color: var(--cs-accent); }
+  .cjk { font-family: var(--cs-font-cjk); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Chaostudio · Living Styleguide</span>
+    <h1>Visual System</h1>
+    <p class="lede">This page renders directly from <code>tokens.css</code>. If a value here looks wrong, fix the token — not the page. This is our point of agreement.</p>
+  </header>
+
+  <section>
+    <h2>Color</h2>
+    <div class="grid cols-4" id="colors"></div>
+  </section>
+
+  <section>
+    <h2>Type · Families</h2>
+    <div id="families"></div>
+  </section>
+
+  <section>
+    <h2>Type · UI Scale</h2>
+    <div id="uiscale"></div>
+  </section>
+
+  <section>
+    <h2>Type · Display</h2>
+    <div id="display"></div>
+  </section>
+
+  <section>
+    <h2>Tracking · the signature</h2>
+    <div id="tracking"></div>
+  </section>
+
+  <section>
+    <h2>Spacing</h2>
+    <div id="spacing"></div>
+  </section>
+
+  <section>
+    <h2>Radius &amp; Borders</h2>
+    <div class="grid cols-3">
+      <div class="card" style="border-radius: var(--cs-radius-none)"><span class="eyebrow">--cs-radius-none · 0</span></div>
+      <div class="card" style="border-radius: var(--cs-radius-hair)"><span class="eyebrow">--cs-radius-hair · 2px</span></div>
+      <div class="card" style="border: var(--cs-border-strong)"><span class="eyebrow">--cs-border-strong</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Motion · one easing</h2>
+    <div id="motion"></div>
+  </section>
+
+  <section>
+    <h2>Components</h2>
+    <div class="grid cols-3">
+      <div><button class="btn">Return</button></div>
+      <div class="card">
+        <span class="eyebrow">Hairline card</span>
+        <p style="font-size: var(--cs-text-md); color: var(--cs-ink-muted); margin: var(--cs-space-2xs) 0 0;">Structure by line, never by shadow.</p>
+      </div>
+      <div class="card cjk">
+        <span class="eyebrow">双语对等</span>
+        <p style="font-size: var(--cs-text-md); margin: var(--cs-space-2xs) 0 0;">中文与 English 同为一等公民。</p>
+      </div>
+    </div>
+    <div style="margin-top: var(--cs-space-lg)">
+      <div class="signal-row"><span class="code">C03</span><span class="ttl">Zayn Archive Interface</span><span class="st">Routed</span></div>
+      <div class="signal-row"><span class="code">T01</span><span class="ttl">Tend</span><span class="st">Live</span></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  // Read each token's computed value from :root so this page can never drift.
+  const cs = getComputedStyle(document.documentElement);
+  const v = (name) => cs.getPropertyValue(name).trim();
+
+  const colors = ["ground","ground-soft","ink","ink-muted","ink-faint","line","line-strong","accent","signal"];
+  document.getElementById("colors").innerHTML = colors.map((c) => {
+    const name = "--cs-" + c;
+    return `<div class="swatch"><div class="chip" style="background:var(${name})"></div>
+      <span class="name">${c}</span><span class="var">${name}</span><span class="val">${v(name)}</span></div>`;
+  }).join("");
+
+  const families = [["display","--cs-font-display"],["condensed","--cs-font-condensed"],["body","--cs-font-body"],["cjk","--cs-font-cjk"]];
+  document.getElementById("families").innerHTML = families.map(([k, name]) =>
+    `<div class="row"><span class="meta">${k} · ${name}</span>
+     <span style="font-family:var(${name}); font-size:var(--cs-text-xl)">Chaostudio 混沌工作室 0123</span></div>`).join("");
+
+  const ui = [["micro","--cs-text-micro"],["2xs","--cs-text-2xs"],["xs","--cs-text-xs"],["sm","--cs-text-sm"],["md","--cs-text-md"],["lg","--cs-text-lg"],["xl","--cs-text-xl"],["2xl","--cs-text-2xl"]];
+  document.getElementById("uiscale").innerHTML = ui.map(([k, name]) =>
+    `<div class="row"><span class="meta">text-${k} · ${v(name)}</span>
+     <span style="font-size:var(${name}); letter-spacing:var(--cs-track)">Signals route through the field</span></div>`).join("");
+
+  const disp = [["sm","--cs-display-sm"],["md","--cs-display-md"],["lg","--cs-display-lg"]];
+  document.getElementById("display").innerHTML = disp.map(([k, name]) =>
+    `<div class="row"><span class="meta">display-${k}</span>
+     <span style="font-family:var(--cs-font-display); font-size:var(${name}); letter-spacing:var(--cs-track-tight); line-height:1.05">Archive</span></div>`).join("");
+
+  const tr = [["tight","--cs-track-tight"],["snug","--cs-track-snug"],["base","--cs-track"],["wide","--cs-track-wide"],["wider","--cs-track-wider"]];
+  document.getElementById("tracking").innerHTML = tr.map(([k, name]) =>
+    `<div class="row"><span class="meta">track-${k} · ${v(name)||"0"}</span>
+     <span style="font-size:var(--cs-text-md); text-transform:uppercase; letter-spacing:var(${name})">closed field</span></div>`).join("");
+
+  const sp = [["3xs","--cs-space-3xs"],["2xs","--cs-space-2xs"],["xs","--cs-space-xs"],["sm","--cs-space-sm"],["md","--cs-space-md"],["lg","--cs-space-lg"],["xl","--cs-space-xl"],["2xl","--cs-space-2xl"],["3xl","--cs-space-3xl"]];
+  document.getElementById("spacing").innerHTML = sp.map(([k, name]) =>
+    `<div class="row"><span class="meta">space-${k} · ${v(name)}</span>
+     <span class="space-bar" style="width:var(${name})"></span></div>`).join("");
+
+  const dur = [["1","--cs-dur-1"],["2","--cs-dur-2"],["3","--cs-dur-3"],["4","--cs-dur-4"],["5","--cs-dur-5"],["6","--cs-dur-6"]];
+  document.getElementById("motion").innerHTML = dur.map(([k, name]) =>
+    `<div class="mo"><span class="meta" style="flex:0 0 160px">dur-${k} · ${v(name)}</span>
+     <span class="track"><span class="runner" data-dur="${name}"></span></span></div>`).join("");
+
+  // animate runners on the signature easing, looping
+  function runMotion() {
+    document.querySelectorAll(".runner").forEach((r) => {
+      const d = v(r.dataset.dur);
+      r.animate([{ left: "0" }, { left: "calc(100% - 16px)" }], { duration: parseFloat(d), easing: v("--cs-ease"), iterations: Infinity, direction: "alternate" });
+    });
+  }
+  runMotion();
+</script>
+</body>
+</html>
