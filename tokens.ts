@@ -19,6 +19,20 @@ export const color = {
   signal:     "#78a9a8", // cyan
 } as const;
 
+/**
+ * Semantic STATE aliases — record/data status as an activity gradient over the
+ * primitives above. No new hues: `live` and `routing` share cyan and differ in
+ * MOTION (pulse vs steady), not color. Amber is intentionally NOT here — it
+ * stays reserved for the interactive/active state (current selection). Encode
+ * status with shape (filled/hollow dot) + ink opacity too, never color alone.
+ */
+export const state = {
+  live:     color.signal,
+  routing:  color.signal,
+  archived: color.inkMuted,
+  offline:  color.inkFaint,
+} as const;
+
 export const font = {
   display:   '"Archivo", "Arial Narrow", Arial, sans-serif',
   condensed: '"IBM Plex Sans Condensed", "Arial Narrow", Arial, sans-serif',

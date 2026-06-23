@@ -25,6 +25,20 @@
   --cs-accent:        #d8aa52;            /* amber — actions, live state. Use sparingly. */
   --cs-signal:        #78a9a8;            /* cyan — signals, secondary highlight */
 
+  /* ── SEMANTIC · STATE ────────────────────────────────────────────────────
+     Record/data status as an ALIAS layer over the primitives above — no new
+     hues, so the palette stays near-monochrome. Status reads as an activity
+     gradient. `live` and `routing` share cyan and differ in MOTION/form
+     (pulse vs steady), NOT color. Amber is deliberately ABSENT: it stays
+     reserved for the interactive/active state (current selection), which is
+     naturally scarce — spending it on a data status would blow the amber
+     budget and collide with focus. Always pair with shape (filled/hollow dot)
+     and ink opacity so status never rides on color alone. */
+  --cs-state-live:     var(--cs-signal);     /* online / active */
+  --cs-state-routing:  var(--cs-signal);     /* in transit — distinguish via pulse */
+  --cs-state-archived: var(--cs-ink-muted);  /* sealed, legible, at rest */
+  --cs-state-offline:  var(--cs-ink-faint);  /* dormant / failed — near silent */
+
   /* ── TYPE FAMILIES ──────────────────────────────────────────────────────
      Condensed is the workhorse (the technical/catalog voice). */
   --cs-font-display:   "Archivo", "Arial Narrow", Arial, sans-serif;
